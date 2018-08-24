@@ -9,14 +9,14 @@ ARG TUTOR_USERNAME=tutor
 ARG TUTOR_PASSWORD=tutor
 
 RUN apt-get update -y \
-  && apt-get install -y curl ca-certificates \
-  && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+  && apt-get install -y curl ca-certificates gnupg2 \
+  && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
   && apt-get install -y nodejs libzmq3-dev mcrypt
 
 RUN pip install jupyter
 
-RUN npm install -g ijavascript \
-  && ijs --ijs-install=global
+RUN npm install --unsafe-perm -g ijavascript &&\
+  ijs --ijs-install=global
 
 RUN useradd -m $TUTOR_USERNAME \
   && echo "$TUTOR_USERNAME:$TUTOR_PASSWORD" | chpasswd
