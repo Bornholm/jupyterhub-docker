@@ -9,8 +9,8 @@ services:
         - HTTPS_PROXY=${HTTPS_PROXY}
         - http_proxy=${http_proxy}
         - https_proxy=${https_proxy}
-        - TUTOR_USERNAME=tutor
-        - TUTOR_PASSWORD=tutor
+        - TUTOR_USERNAME=${TUTOR_USERNAME:-tutor}
+        - TUTOR_PASSWORD=${TUTOR_PASSWORD:-tutor}
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
