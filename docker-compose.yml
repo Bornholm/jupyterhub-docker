@@ -12,7 +12,7 @@ services:
         - TUTOR_USERNAME=${TUTOR_USERNAME:-tutor}
         - TUTOR_PASSWORD=${TUTOR_PASSWORD:-tutor}
     ports:
-      - "127.0.0.1:8000:8000"
+      - "8000:8000"
     volumes:
       - ./data/lessons:/home/tutor/lessons
       - ./data/students:/home/tutor/students
