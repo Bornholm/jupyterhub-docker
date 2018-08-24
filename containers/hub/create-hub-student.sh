@@ -11,7 +11,9 @@ if [ -z "$USERNAME" ]; then
   exit 1
 fi
 
-echo -e "$USERNAME\n$USERNAME\n" | adduser -q --gecos "" $USERNAME
+PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c10; echo)
+
+echo -e "$PASSWORD\n$PASSWORD\n" | adduser -q --gecos "" $USERNAME
 
 # Expose student work to tutor
 mkdir -p /home/$TUTOR_USERNAME/students
@@ -24,3 +26,5 @@ chown $TUTOR_USERNAME: /home/$TUTOR_USERNAME/lessons
 ln -s /home/$TUTOR_USERNAME/lessons /home/$USERNAME/lessons
 
 chown $USERNAME: /home/$USERNAME
+
+echo "Student '$USERNAME' created. Its password is '$PASSWORD'."
